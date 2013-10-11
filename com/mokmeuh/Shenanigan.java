@@ -1,5 +1,6 @@
 package mokmeuh;
 
+import mokmeuh.items.Items;
 import mokmeuh.lib.ConfigHandler;
 import mokmeuh.lib.ModInfo;
 import mokmeuh.network.PacketHandler;
@@ -16,31 +17,33 @@ import cpw.mods.fml.common.network.NetworkMod;
 @Mod(modid = ModInfo.ID, name = ModInfo.NAME, version = ModInfo.VERSION)
 @NetworkMod(channels = { ModInfo.CHANNEL }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
 public class Shenanigan
+{
+	@Instance(ModInfo.ID)
+	public static Shenanigan instance;
+
+	@SidedProxy(clientSide = "mokmeuh.proxies.ClientProxy", serverSide = "mokmeuh.proxies.CommonProxy")
+	public static CommonProxy proxy;
+
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event)
 	{
-		@Instance(ModInfo.ID)
-		public static Shenanigan instance;
+		ConfigHandler.init(event.getSuggestedConfigurationFile());
+		Items.init();
 
-		@SidedProxy(clientSide = "mokmeuh.proxies.ClientProxy", serverSide = "mokmeuh.proxies.CommonProxy")
-		public static CommonProxy proxy;
+		proxy.initSounds();
+		proxy.initRenderers();
+	}
 
-		@EventHandler
-		public void preInit(FMLPreInitializationEvent event)
-		{
-			ConfigHandler.init(event.getSuggestedConfigurationFile());
-			proxy.initSounds();
-			proxy.initRenderers();
-		}
-
-		@EventHandler
-		public void Init(FMLInitializationEvent event)
-		{
-
-		}
-
-		@EventHandler
-		public void postInit(FMLPostInitializationEvent event)
-		{
-
-		}
+	@EventHandler
+	public void Init(FMLInitializationEvent event)
+	{
 
 	}
+
+	@EventHandler
+	public void postInit(FMLPostInitializationEvent event)
+	{
+
+	}
+
+}

@@ -1,0 +1,18 @@
+[
+{
+  "modid" : "Shenanigan",
+  "name" : "Mokmeuh's Shenanigan",
+  "version" : "0.1",
+  "credits" : "Vswe & Pahimar",
+  "authors": [
+    "mokmeuh", "xahor"
+  ],
+  "description": "Me and my friend learning to mod.",
+  "url" : "",
+  "updateUrl" : "",
+  "logoFile" : "",
+  "parent" : "",
+  "screenshots": [
+  ]
+}
+]
